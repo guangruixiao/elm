@@ -1,23 +1,29 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <seller ></seller>
+    <menubar></menubar>
+    <router-view ></router-view>
+    <shoppingcar></shoppingcar>
   </div>
 </template>
 
 <script>
+menubar
+import seller from './components/seller'
+import shoppingcar from './components/shoppingcar'
+import menubar from './components/menubar'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    seller,
+    shoppingcar,
+    menubar
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+
 </style>
