@@ -9,8 +9,8 @@
 
 <script>
 menubar
-import seller from './components/seller'
-import shoppingcar from './components/shoppingcar'
+import seller from './components/sellerheader'
+import shoppingcar from './components/shoppingcarfooter'
 import menubar from './components/menubar'
 
 export default {

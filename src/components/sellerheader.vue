@@ -1,7 +1,7 @@
 <template>
      <div>
-      商品页
-    </div>
+      头部
+     </div>
 </template>
 <script>
 </script>
