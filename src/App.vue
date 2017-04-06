@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <seller ></seller>
-    <menubar></menubar>
+    <menubar class="tab" ></menubar>
     <router-view ></router-view>
     <shoppingcar></shoppingcar>
   </div>
@@ -23,7 +23,15 @@ export default {
 }
 </script>
 
-<style>
-
+<style  lang="scss" scoped>
+ #app{
+  .tab {
+    display:flex;
+    width:100;
+    height:40px;
+    line-height:40px;
+  }
+ }
 
 </style>
+
