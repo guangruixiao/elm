@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+/* eslint-disable semi */
+import './common/scss/index.scss';
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

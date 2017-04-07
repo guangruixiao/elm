@@ -8,7 +8,8 @@ Vue.use(Router)
 export default new Router({
   linkActiveClass: 'active',
   routes: [
-    { path: '/', redirect: '/goods' },   //重定向实现首页跳转
+
+    { path: '/', redirect: '/goods' },
     {
       path: '/goods',
       name: 'goods',
