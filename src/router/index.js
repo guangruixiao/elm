@@ -6,9 +6,11 @@ import seller from '@/components/seller'
 Vue.use(Router)
 
 export default new Router({
+  linkActiveClass: 'active',
   routes: [
+    { path: '/', redirect: '/goods' },   //重定向实现首页跳转
     {
-      path: '/',
+      path: '/goods',
       name: 'goods',
       component: goods
     },

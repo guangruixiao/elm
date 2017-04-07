@@ -1,10 +1,8 @@
 <template>
      <div>
-      <span class="link"><router-link to="/">商品</router-link></span>
-      <span class="link"><router-link to="/comment">评价</router-link></span>
-      <span class="link"><router-link to="/seller">商家</router-link></span>
-
-
+      <router-link class="link" to="/goods">商品</router-link>
+      <router-link class="link" to="/comment">评价</router-link>
+      <router-link class="link" to="/seller">商家</router-link>
     </div>
 </template>
 <script>
@@ -13,6 +11,10 @@
 <style  lang="scss" scoped>
   .link {
     flex:1;
-    text-align:center
+    display:block;        /*让链接可以在整个区块被点击*/
+    text-align:center;
+    font-size:14px;
+    color:rgb(77,85,93);
   }
+  .active {color:rgb(240,20,20);}
 </style>
