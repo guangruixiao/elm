@@ -7,6 +7,9 @@ import router from './router'
 /* eslint-disable semi */
 import './common/scss/index.scss';
 
+import axios from 'axios';
+Vue.prototype.$http = axios;
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
