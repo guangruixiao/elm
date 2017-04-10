@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <seller></seller>
+    <seller class="header" v-bind:sellerMessage="sellerinfo"></seller>
     <menubar class="tab border-1px" ></menubar>
     <router-view ></router-view>
     <shoppingcar></shoppingcar>
@@ -9,16 +9,16 @@
 
 <script>
 
-import seller from './components/sellerheader'
+import seller from './components/header/sellerheader'
 import shoppingcar from './components/shoppingcarfooter'
 import menubar from './components/menubar'
 
 export default {
   name: 'app',
   data:function(){
-        return {arrList:[]}
+        return {sellerinfo:{}}
     },
-  created(){
+  mounted(){
       this.fetchdata();
     },
   methods:{
@@ -26,8 +26,7 @@ export default {
         var self=this;
         this.$http.get('/api/seller')
          .then(function (response) {
-            self.arrList=response.data;
-            console.log(response.data)
+            self.sellerinfo=response.data.data;
          })
          .catch(function (response) {
            console.log("没有接收到信息");
@@ -49,6 +48,12 @@ export default {
  @import './common/scss/_mixin';
 
  #app{
+  .header{
+    position:relative;
+    width:100%;
+    height:134px;
+    border: 1px solid red;
+  }
   .tab {
     display:flex;
     width:100;
