@@ -9,13 +9,22 @@
           </div>
           <div class="description">{{sellerMessage.description}}/{{sellerMessage.deliveryTime}}分钟送达</div>
           <div class="supports" v-if=sellerMessage.supports>
-            <span class="icon" v-bind:class="classMap[sellerMessage.supports[0].type]"></span>
-            <span class="text">{{sellerMessage.supports[0].description}}</span>
-            <span class="count">{{sellerMessage.supports.length}}个</span>
+            <span class="supports-icon" v-bind:class="classMap[sellerMessage.supports[0].type]"></span>
+            <span class="supports-text">{{sellerMessage.supports[0].description}}</span>
+            <span class="supports-count">{{sellerMessage.supports.length}}个</span>
+            <i class="icon-keyboard_arrow_right"></i>
           </div>
         </div>
       </div>
-      <div class="bulletin">{{sellerMessage.bulletin}}</div>
+      <div class="bulletin">
+        <span class="bulletin-icon"></span>
+        <span class="bulletin-text"> {{sellerMessage.bulletin}}</span>
+        <i class="icon-keyboard_arrow_right"></i>
+      </div>
+      <div class="background">
+        <img v-bind:src=sellerMessage.avatar width="100%" height="100%">
+      </div>
+
      </div>
 </template>
 <script>
@@ -32,6 +41,7 @@ export default {
  @import '../../common/scss/_mixin.scss';
 
   .sellerheader{
+    position: relative;
     color:white;
     background-color:rgba(7,17,27,0.5);
     blur:10px;
@@ -64,7 +74,6 @@ export default {
             line-height: 18px;
             font-weight: bold;
           }
-
         }
         .description{
           margin-top:8px;
@@ -72,8 +81,9 @@ export default {
           font-size: 12px;
         }
         .supports{
+          font-size: 0;
           margin-top:10px;
-          .icon{
+          .supports-icon{
             display:inline-block;
             vertical-align:bottom;
             width: 12px;
@@ -96,19 +106,62 @@ export default {
             @include bg-image('special_1')
             }
           }
-          .text{
-            display:inline-block;
+          .supports-text{
             vertical-align:bottom;
             margin-left:4px;
             line-height: 12px;
             font-size: 10px;
           }
-
+          .supports-count{
+            margin-left:100px;
+            vertical-align: bottom;
+            font-size: 10px;
+          }
+          .icon-keyboard_arrow_right{
+            margin-left:1px;
+            font-size: 10px;
+          }
         }
       }
-
-
-
+    }
+    .bulletin{
+      position: relative;
+      height:28px;
+      padding: 0 24px 0 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color:rgba(7,17,27,0.2);
+      .bulletin-icon{
+        display:inline-block;
+        vertical-align: middle;
+        width:22px;
+        height:12px;
+        @include bg-image("bulletin");
+            background-size: 22px 12px;
+            background-repeat: no-repeat;
+      }
+      .bulletin-text{
+        margin: 0 4px;
+        line-height:28px;
+        font-size:10px;
+        color:rgb(255,255,255);
+      }
+      .icon-keyboard_arrow_right{
+        position: absolute;
+        font-size: 10px;
+        right: 8px;
+        top: 8px;
+      }
+    }
+    .background{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      filter: blur(10px);
     }
   }
 </style>

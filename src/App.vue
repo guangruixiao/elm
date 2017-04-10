@@ -52,7 +52,6 @@ export default {
     position:relative;
     width:100%;
     height:134px;
-    border: 1px solid red;
   }
   .tab {
     display:flex;
