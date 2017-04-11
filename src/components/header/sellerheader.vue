@@ -1,5 +1,5 @@
 <template>
-     <div class="sellerheader">
+    <div class="sellerheader">
       <div class="content-wrapper">
         <img class="avatar" width="64" height="64" v-bind:src=sellerMessage.avatar alt="">
         <div class="content">
@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-      <div class="bulletin">
+      <div class="bulletin"  v-on:click="sellerlistshow" >
         <span class="bulletin-icon"></span>
         <span class="bulletin-text"> {{sellerMessage.bulletin}}</span>
         <i class="icon-keyboard_arrow_right"></i>
@@ -24,15 +24,37 @@
       <div class="background">
         <img v-bind:src=sellerMessage.avatar width="100%" height="100%">
       </div>
+      <div class="detail" v-show="sellerdetail" >
+        <div class="detail-wrapper clearfix">
+          <div class="detail-main"></div>
+        </div>
+        <div class="detail-close" v-on:click="sellerlistshow">
+          <i class="icon-close"></i>
+        </div>
+      </div>
 
-     </div>
+    </div>
 </template>
 <script>
 export default {
   props:["sellerMessage"],
+  data() {
+    return {
+      sellerdetail: false
+    };
+  },
   created() {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
     },
+  methods:{
+    sellerlistshow:function(){
+      if(this.sellerdetail==false){
+        this.sellerdetail=true;
+      }else{
+        this.sellerdetail=false;
+      }
+    }
+  }
 
 }
 </script>
@@ -42,6 +64,7 @@ export default {
 
   .sellerheader{
     position: relative;
+    overflow:hidden;
     color:white;
     background-color:rgba(7,17,27,0.5);
     blur:10px;
@@ -163,5 +186,33 @@ export default {
       z-index: -1;
       filter: blur(10px);
     }
+    .detail{
+      position:fixed;
+      left:0;
+      top:0;
+      z-index: 100;
+      width:100%;
+      height:100%;
+      overflow:auto;
+      background-color:rgba(7,17,27,0.8);
+      .detail-wrapper{
+        width: 100%;
+        min-height: 100%;
+        .detail-main{
+          margin-top: 64px;
+          padding-bottom: 64px;
+        }
+      }
+      .detail-close{
+        position: relative;
+        width: 32px;
+        height: 32px;
+        margin: -64px auto 0 auto;
+        clear: both;
+        font-size: 32px;
+      }
+
+    }
+
   }
 </style>
