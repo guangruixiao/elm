@@ -26,13 +26,32 @@
       </div>
       <div class="detail" v-show="sellerdetail" >
         <div class="detail-wrapper clearfix">
-          <div class="detail-main"></div>
+          <div class="detail-main">
+            <div class="detail-header">
+              <span class="detail-name">{{sellerMessage.name}}</span>
+              <ul class="detail-star">
+                <li></li>
+              </ul>
+            </div>
+            <div class="detail-title">
+              <span>优惠信息</span>
+            </div>
+            <div class="detail-supports" v-for="item in (sellerMessage.supports)">
+              <span class="detail-icon" v-bind:class="classMap[item.type]"></span>
+              <span class="detail-description">{{item.description}}</span>
+            </div>
+            <div class="detail-title">
+              <span>商家公告</span>
+            </div>
+            <div class="detail-bulletin">
+              <p>{{sellerMessage.bulletin}}</p>
+            </div>
+          </div>
         </div>
         <div class="detail-close" v-on:click="sellerlistshow">
           <i class="icon-close"></i>
         </div>
       </div>
-
     </div>
 </template>
 <script>
@@ -55,13 +74,10 @@ export default {
       }
     }
   }
-
 }
 </script>
 <style lang="scss" scoped>
-
  @import '../../common/scss/_mixin.scss';
-
   .sellerheader{
     position: relative;
     overflow:hidden;
@@ -200,8 +216,75 @@ export default {
         min-height: 100%;
         .detail-main{
           margin-top: 64px;
+          margin-left:36px;
+          width:303px;
+          border: 1px solid red;
           padding-bottom: 64px;
+          .detail-header{
+            text-align:center;
+            .detail-name{
+              display:inline-block;
+              padding:0 auto;
+              font-size:16px;
+              line-height:16px;
+              font-weight:700;
+              color:rgb(255,255,255)
+            }
+            .detail-star{
+              margin-top:16px;
+              height:24px;
+            }
+          }
+          .detail-title{
+            margin-top:28px;
+            font-size:14px;
+            line-height:14px;
+            font-weight:700;
+            color:rgb(255,255,255)
+          }
+          .detail-supports{
+            margin-top:24px;
+            padding-left:12px;
+            .detail-icon{
+              display:inline-block;
+              vertical-align: middle;
+              width: 16px;
+              height: 16px;
+              background-size: 16px 16px;
+              background-repeat: no-repeat;
+              &.decrease{
+               @include bg-image('decrease_1')
+              }
+              &.discount{
+               @include bg-image('discount_1')
+              }
+              &.guarantee{
+               @include bg-image('guarantee_1')
+              }
+              &.invoice{
+               @include bg-image('invoice_1')
+              }
+              &.special{
+              @include bg-image('special_1')
+              }
+            }
+            .detail-description{
+              display:inline-block;
+              vertical-align: middle;
+              margin-left:6px;
+              font-size:12px;
+              line-height:12px;
+              font-weight:200;
+              color:rgb(255,255,255);
+            }
+          }
+          .detail-bulletin{
+            margin-top:24px;
+
+          }
+
         }
+
       }
       .detail-close{
         position: relative;
