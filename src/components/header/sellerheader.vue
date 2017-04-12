@@ -11,8 +11,10 @@
           <div class="supports" v-if=sellerMessage.supports>
             <span class="supports-icon" v-bind:class="classMap[sellerMessage.supports[0].type]"></span>
             <span class="supports-text">{{sellerMessage.supports[0].description}}</span>
-            <span class="supports-count">{{sellerMessage.supports.length}}个</span>
-            <i class="icon-keyboard_arrow_right"></i>
+            <div class="supports-click" v-on:click="sellerlistshow">
+              <span class="supports-count">{{sellerMessage.supports.length}}个</span>
+              <i class="icon-keyboard_arrow_right"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -29,17 +31,21 @@
           <div class="detail-main">
             <div class="detail-header">
               <h1 class="detail-name">{{sellerMessage.name}}</h1>
-              <star class="detail-star" v-bind:score="(sellerMessage.score)"></star>
+              <star class="detail-star" v-bind:size="48"  v-bind:score="(sellerMessage.score)"></star>
             </div>
             <div class="detail-title">
-              <span>优惠信息</span>
+              <div class="title-line"></div>
+              <div class="title-name">优惠信息</div>
+              <div class="title-line"></div>
             </div>
             <div class="detail-supports" v-for="item in (sellerMessage.supports)">
               <span class="detail-icon" v-bind:class="classMap[item.type]"></span>
               <span class="detail-description">{{item.description}}</span>
             </div>
             <div class="detail-title">
-              <span>商家公告</span>
+              <div class="title-line"></div>
+              <div class="title-name">商家公告</div>
+              <div class="title-line"></div>
             </div>
             <div class="detail-bulletin">
               <p>{{sellerMessage.bulletin}}</p>
@@ -149,19 +155,23 @@ export default {
             }
           }
           .supports-text{
+            display:inline-block;
             vertical-align:bottom;
             margin-left:4px;
             line-height: 12px;
             font-size: 10px;
           }
-          .supports-count{
-            margin-left:100px;
-            vertical-align: bottom;
-            font-size: 10px;
-          }
-          .icon-keyboard_arrow_right{
-            margin-left:1px;
-            font-size: 10px;
+          .supports-click{
+            display:inline-block;
+            margin-left:55px;
+            .supports-count{
+              vertical-align: bottom;
+              font-size: 10px;
+            }
+            .icon-keyboard_arrow_right{
+              margin-left:1px;
+              font-size: 10px;
+            }
           }
         }
       }
@@ -218,11 +228,10 @@ export default {
         width: 100%;
         min-height: 100%;
         .detail-main{
-          margin-top: 64px;
-          margin-left:36px;
-          width:303px;
+          margin:64px auto 0 auto;
+          padding-bottom:64px;
+          width:80%;
           border: 1px solid red;
-          padding-bottom: 64px;
           .detail-header{
             text-align:center;
             .detail-name{
@@ -235,25 +244,41 @@ export default {
             }
             .detail-star{
               margin-top:16px;
+              height:24px;
             }
           }
           .detail-title{
-            margin-top:28px;
-            font-size:14px;
-            line-height:14px;
-            font-weight:700;
-            color:rgb(255,255,255)
+            display:flex;
+            margin:30px auto 24px auto;
+            .title-line{
+              flex:1;
+              position:relative;
+              top:-6px;
+              border-bottom: 1px solid rgba(255,255,255,0.2)
+            }
+            .title-name{
+              padding:0 12px;
+              font-size:14px;
+              line-height:14px;
+              font-weight:700;
+              color:rgb(255,255,255)
+            }
           }
           .detail-supports{
             margin-top:24px;
-            padding-left:12px;
+            margin-left:12px;
+            margin-right:12px;
             .detail-icon{
               display:inline-block;
-              vertical-align: middle;
+              margin-bottom:12px;
+              vertical-align: top;
               width: 16px;
               height: 16px;
               background-size: 16px 16px;
               background-repeat: no-repeat;
+              &:last-child{
+                margin-bottom: 0;
+              }
               &.decrease{
                @include bg-image('decrease_1')
               }
@@ -272,7 +297,6 @@ export default {
             }
             .detail-description{
               display:inline-block;
-              vertical-align: middle;
               margin-left:6px;
               font-size:12px;
               line-height:12px;
@@ -282,11 +306,15 @@ export default {
           }
           .detail-bulletin{
             margin-top:24px;
+            margin-left:12px;
+            margin-right:12px;
+            font-size:12px;
+            line-height:24px;
+            font-weight:200;
+            color:rgb(255,255,255);
 
           }
-
         }
-
       }
       .detail-close{
         position: relative;
@@ -296,8 +324,6 @@ export default {
         clear: both;
         font-size: 32px;
       }
-
     }
-
   }
 </style>
