@@ -28,10 +28,8 @@
         <div class="detail-wrapper clearfix">
           <div class="detail-main">
             <div class="detail-header">
-              <span class="detail-name">{{sellerMessage.name}}</span>
-              <ul class="detail-star">
-                <li></li>
-              </ul>
+              <h1 class="detail-name">{{sellerMessage.name}}</h1>
+              <star class="detail-star" v-bind:score="(sellerMessage.score)"></star>
             </div>
             <div class="detail-title">
               <span>优惠信息</span>
@@ -55,6 +53,8 @@
     </div>
 </template>
 <script>
+import star from '../star/star'
+
 export default {
   props:["sellerMessage"],
   data() {
@@ -73,6 +73,9 @@ export default {
         this.sellerdetail=false;
       }
     }
+  },
+  components: {
+    star
   }
 }
 </script>
@@ -232,7 +235,6 @@ export default {
             }
             .detail-star{
               margin-top:16px;
-              height:24px;
             }
           }
           .detail-title{
