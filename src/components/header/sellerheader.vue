@@ -11,10 +11,10 @@
           <div class="supports" v-if=sellerMessage.supports>
             <span class="supports-icon" v-bind:class="classMap[sellerMessage.supports[0].type]"></span>
             <span class="supports-text">{{sellerMessage.supports[0].description}}</span>
-            <div class="supports-click" v-on:click="sellerlistshow">
-              <span class="supports-count">{{sellerMessage.supports.length}}个</span>
-              <i class="icon-keyboard_arrow_right"></i>
-            </div>
+          <div class="supports-click" v-on:click="sellerlistshow">
+            <span class="supports-count">{{sellerMessage.supports.length}}个</span>
+            <i class="icon-keyboard_arrow_right"></i>
+          </div>
           </div>
         </div>
       </div>
@@ -26,36 +26,39 @@
       <div class="background">
         <img v-bind:src=sellerMessage.avatar width="100%" height="100%">
       </div>
-      <div class="detail" v-show="sellerdetail" >
-        <div class="detail-wrapper clearfix">
-          <div class="detail-main">
-            <div class="detail-header">
-              <h1 class="detail-name">{{sellerMessage.name}}</h1>
-              <star class="detail-star" v-bind:size="48"  v-bind:score="(sellerMessage.score)"></star>
-            </div>
-            <div class="detail-title">
-              <div class="title-line"></div>
-              <div class="title-name">优惠信息</div>
-              <div class="title-line"></div>
-            </div>
-            <div class="detail-supports" v-for="item in (sellerMessage.supports)">
-              <span class="detail-icon" v-bind:class="classMap[item.type]"></span>
-              <span class="detail-description">{{item.description}}</span>
-            </div>
-            <div class="detail-title">
-              <div class="title-line"></div>
-              <div class="title-name">商家公告</div>
-              <div class="title-line"></div>
-            </div>
-            <div class="detail-bulletin">
-              <p>{{sellerMessage.bulletin}}</p>
+      <transition name="fade">
+        <div class="detail" v-show="sellerdetail" >
+          <div class="detail-wrapper clearfix">
+            <div class="detail-main">
+              <div class="detail-header">
+                <h1 class="detail-name">{{sellerMessage.name}}</h1>
+                <star class="detail-star" v-bind:size="48"  v-bind:score="(sellerMessage.score)"></star>
+              </div>
+              <div class="detail-title">
+                <div class="title-line"></div>
+                <div class="title-name">优惠信息</div>
+                <div class="title-line"></div>
+              </div>
+              <div class="detail-supports" v-for="item in (sellerMessage.supports)">
+                <span class="detail-icon" v-bind:class="classMap[item.type]"></span>
+                <span class="detail-description">{{item.description}}</span>
+              </div>
+              <div class="detail-title">
+                <div class="title-line"></div>
+                <div class="title-name">商家公告</div>
+                <div class="title-line"></div>
+              </div>
+              <div class="detail-bulletin">
+                <p>{{sellerMessage.bulletin}}</p>
+              </div>
             </div>
           </div>
+          <div class="detail-close" v-on:click="sellerlistshow">
+            <i class="icon-close"></i>
+          </div>
         </div>
-        <div class="detail-close" v-on:click="sellerlistshow">
-          <i class="icon-close"></i>
-        </div>
-      </div>
+      </transition>
+
     </div>
 </template>
 <script>
@@ -97,15 +100,15 @@ export default {
       position:relative;
       width:100%;
       height:106px;
+
       .avatar{
         margin-left:24px;
         margin-top:24px;
         border-radious:2px;
       }
       .content{
-        position:absolute;
-        left:104px;
-        top:26px;
+        display: inline-block;
+        margin-left: 16px;
         .title{
           .brand{
             display:inline-block;
@@ -129,6 +132,7 @@ export default {
           font-size: 12px;
         }
         .supports{
+
           font-size: 0;
           margin-top:10px;
           .supports-icon{
@@ -161,18 +165,24 @@ export default {
             line-height: 12px;
             font-size: 10px;
           }
-          .supports-click{
-            display:inline-block;
-            margin-left:55px;
-            .supports-count{
-              vertical-align: bottom;
-              font-size: 10px;
-            }
-            .icon-keyboard_arrow_right{
-              margin-left:1px;
-              font-size: 10px;
-            }
-          }
+        }
+      }
+      .supports-click{
+        position: absolute;
+        right: 12px;
+        bottom: 14px;
+        padding: 0 8px;
+        height: 24px;
+        line-height: 24px;
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.2);
+        text-align: center;
+        .supports-count{
+          font-size: 10px;
+        }
+        .icon-keyboard_arrow_right{
+          margin-left:4px;
+          font-size: 10px;
         }
       }
     }
@@ -216,6 +226,12 @@ export default {
       filter: blur(10px);
     }
     .detail{
+      &.fade-enter-active, &.fade-leave-active {
+        transition: opacity .5s;
+      }
+      &.fade-enter, &.fade-leave-active {
+        opacity: 0;
+      }
       position:fixed;
       left:0;
       top:0;
@@ -231,7 +247,6 @@ export default {
           margin:64px auto 0 auto;
           padding-bottom:64px;
           width:80%;
-          border: 1px solid red;
           .detail-header{
             text-align:center;
             .detail-name{
