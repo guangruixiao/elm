@@ -9,7 +9,7 @@
           </div>
           <div class="description">{{sellerMessage.description}}/{{sellerMessage.deliveryTime}}分钟送达</div>
           <div class="supports" v-if=sellerMessage.supports>
-            <span class="supports-icon" v-bind:class="classMap[sellerMessage.supports[0].type]"></span>
+            <icon class="supports-icon" v-bind:size="1" v-bind:type="(sellerMessage.supports[0].type)"></icon>
             <span class="supports-text">{{sellerMessage.supports[0].description}}</span>
           <div class="supports-click" v-on:click="sellerlistshow">
             <span class="supports-count">{{sellerMessage.supports.length}}个</span>
@@ -40,7 +40,7 @@
                 <div class="title-line"></div>
               </div>
               <div class="detail-supports" v-for="item in (sellerMessage.supports)">
-                <span class="detail-icon" v-bind:class="classMap[item.type]"></span>
+                <icon class="detail-icon" v-bind:size="2" v-bind:type="(item.type)"></icon>
                 <span class="detail-description">{{item.description}}</span>
               </div>
               <div class="detail-title">
@@ -63,6 +63,7 @@
 </template>
 <script>
 import star from '../star/star'
+import icon from '../icon/icon'
 
 export default {
   props:["sellerMessage"],
@@ -71,9 +72,7 @@ export default {
       sellerdetail: false
     };
   },
-  created() {
-      this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
-    },
+
   methods:{
     sellerlistshow:function(){
       if(this.sellerdetail==false){
@@ -84,7 +83,8 @@ export default {
     }
   },
   components: {
-    star
+    star,
+    icon
   }
 }
 </script>
@@ -100,7 +100,6 @@ export default {
       position:relative;
       width:100%;
       height:106px;
-
       .avatar{
         margin-left:24px;
         margin-top:24px;
@@ -132,7 +131,6 @@ export default {
           font-size: 12px;
         }
         .supports{
-
           font-size: 0;
           margin-top:10px;
           .supports-icon{
@@ -140,23 +138,6 @@ export default {
             vertical-align:bottom;
             width: 12px;
             height: 12px;
-            background-size: 12px 12px;
-            background-repeat: no-repeat;
-            &.decrease{
-             @include bg-image('decrease_1')
-            }
-            &.discount{
-             @include bg-image('discount_1')
-            }
-            &.guarantee{
-             @include bg-image('guarantee_1')
-            }
-            &.invoice{
-             @include bg-image('invoice_1')
-            }
-            &.special{
-            @include bg-image('special_1')
-            }
           }
           .supports-text{
             display:inline-block;
@@ -284,30 +265,10 @@ export default {
             margin-left:12px;
             margin-right:12px;
             .detail-icon{
-              display:inline-block;
               margin-bottom:12px;
               vertical-align: top;
-              width: 16px;
-              height: 16px;
-              background-size: 16px 16px;
-              background-repeat: no-repeat;
               &:last-child{
-                margin-bottom: 0;
-              }
-              &.decrease{
-               @include bg-image('decrease_1')
-              }
-              &.discount{
-               @include bg-image('discount_1')
-              }
-              &.guarantee{
-               @include bg-image('guarantee_1')
-              }
-              &.invoice{
-               @include bg-image('invoice_1')
-              }
-              &.special{
-              @include bg-image('special_1')
+              margin-bottom: 0;
               }
             }
             .detail-description{

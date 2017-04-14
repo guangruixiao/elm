@@ -3,7 +3,9 @@
       <div class="menubar">
         <ul class="menubar-list">
           <li class="menubar-item" v-for="item in goodsinfo">
-            <span class="menubar-name">{{item.name}}</span>
+            <span class="menubar-text">
+              <icon class="menubar-icon" v-show="item.type>0" v-bind:size="3" v-bind:type="item.type"></icon>{{item.name}}
+            </span>
           </li>
         </ul>
       </div>
@@ -11,6 +13,8 @@
     </div>
 </template>
 <script>
+import icon from '../icon/icon'
+
 export default {
 
   data:function(){
@@ -31,6 +35,9 @@ export default {
          });
       }
     },
+  components: {
+    icon
+  }
 }
 
 </script>
@@ -45,7 +52,7 @@ export default {
     overflow:hidden;
     .menubar{
       flex: 0 0 80px;
-      width:80px;
+      width:80px;          /*安卓兼容性*/
       background:#f3f5f7;
       .menubar-item{
         display: table;
@@ -55,11 +62,13 @@ export default {
         font-size:12px;
         line-height:14px;
         font-weight:200;
-        .menubar-name{
+        .menubar-icon{
+          vertical-align: top;
+        }
+        .menubar-text{
           display: table-cell;
           width: 56px;
           vertical-align: middle;
-
         }
       }
     }
