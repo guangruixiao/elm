@@ -72,7 +72,8 @@
     "sass-loader": "^4.1.1",
     "scss": "^0.2.4",
     "scss-loader": "0.0.1",
-    "axios": "^0.16.1"
+    "axios": "^0.16.1",
+    "better-scroll":"^0.1.15"
   },
     "engines": {
     "node": ">= 4.0.0",
