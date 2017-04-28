@@ -33,16 +33,18 @@
           </li>
         </ul>
       </div>
+      <shoppingcar class="carfooter" v-bind:deliveryPrice="sellerMessage.deliveryPrice" v-bind:minPrice="sellerMessage.minPrice"></shoppingcar>
     </div>
 </template>
 <script>
 import icon from '../icon/icon';
 import BScroll from 'better-scroll'
+import shoppingcar from '../shoppingcarfooter'
 
 
 
 export default {
-
+  props:["sellerMessage"],
   data:function(){
         return {goodsinfo:[], listHeight: [], scrollY: 0,}
     },
@@ -115,7 +117,8 @@ export default {
 
   },
   components: {
-    icon
+    icon,
+    shoppingcar
   }
 }
 
@@ -234,5 +237,6 @@ export default {
 
       }
     }
+
   }
 </style>

@@ -2,15 +2,13 @@
   <div id="app">
     <seller class="header" v-bind:sellerMessage="sellerinfo"></seller>
     <menubar class="tab border-1px" ></menubar>
-    <router-view ></router-view>
-    <shoppingcar></shoppingcar>
+    <router-view v-bind:sellerMessage="sellerinfo" ></router-view>
   </div>
 </template>
 
 <script>
 
 import seller from './components/header/sellerheader'
-import shoppingcar from './components/shoppingcarfooter'
 import menubar from './components/menubar'
 
 export default {
@@ -36,7 +34,6 @@ export default {
 
   components: {
     seller,
-    shoppingcar,
     menubar
   }
 }
