@@ -29,6 +29,7 @@
                   </span>
                 </div>
               </div>
+              <selectcart class="selectVue" ></selectcart>
             </div>
           </li>
         </ul>
@@ -40,6 +41,7 @@
 import icon from '../icon/icon';
 import BScroll from 'better-scroll'
 import shoppingcar from '../shoppingcarfooter'
+import selectcart from '../select'
 
 
 
@@ -118,7 +120,8 @@ export default {
   },
   components: {
     icon,
-    shoppingcar
+    shoppingcar,
+    selectcart
   }
 }
 
@@ -185,6 +188,7 @@ export default {
         }
         .content-goods{
           display: flex;
+          position:relative;
           margin: 18px;
           padding-bottom: 18px;
           @include border-1px(rgba(7, 17, 27, 0.1));
@@ -231,8 +235,8 @@ export default {
               }
 
             }
-
           }
+
         }
 
       }
