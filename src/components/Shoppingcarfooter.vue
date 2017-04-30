@@ -5,11 +5,12 @@
           <span class="logo-wrapper">
             <i class="icon-shopping_cart" ></i>
           </span>
-          <span class="total">￥{{total}}</span>
+          <span class="totalCount" v-if="totalCount>0">{{totalCount}}</span>
+          <span class="totalPrice">￥{{totalPrice}}</span>
           <span class="desc">另需配送费{{deliveryPrice}}￥</span>
         </div>
         <div class="right">
-          <span class="minPrice">￥{{minPrice}}起送 </span>
+          <span class="minPrice">{{check}}</span>
         </div>
       </div>
     </div>
@@ -22,13 +23,42 @@ export default {
       deliveryPrice: {
       },
       minPrice: {
-      }
+      },
+      selectFoods:{},
   },
   data() {
     return {
-      total: 0,
+
     };
   },
+
+  computed:{
+    totalCount() {
+            let count = 0;
+            this.selectFoods.forEach((food) => {
+              count += food.count;
+            });
+            return count;
+          },
+
+    totalPrice() {
+            let total = 0;
+            this.selectFoods.forEach((food) => {
+              total += food.price * food.count;
+            });
+            return total;
+          },
+    check() {
+          if(this.totalPrice >= this.minPrice){
+            return "去结算"
+          }else if(this.totalPrice>0){
+            let gapPrice=this.minPrice-this.totalPrice;
+            return "还差￥"+gapPrice+"起送"
+          }else{
+            return "￥"+this.minPrice+"起送"
+          }
+    }
+  }
 
 }
 </script>
@@ -46,6 +76,7 @@ export default {
       background: #141d27;
       .left{
         flex:1;
+        position:relative;
         .logo-wrapper{
           display: inline-block;
           vertical-align: top;
@@ -65,7 +96,21 @@ export default {
             color: #80858a;
           }
         }
-        .total{
+        .totalCount{
+          position:absolute;
+          left:48px;
+          width:24px;
+          top:-8px;
+          background-color:rgb(240,20,20);
+          box-shadow:0px 2px 4px 0px rgba(0,0,0,0.4);
+          border-radius:6px;
+          text-align:center;
+          font-size:9px;
+          font-weight:700;
+          color:rgb(255,255,255);
+          line-height:16px;
+        }
+        .totalPrice{
           display: inline-block;
           margin-top: 12px;
           line-height: 24px;
@@ -74,6 +119,7 @@ export default {
           border-right: 1px solid rgba(255, 255, 255, 0.1);
           font-size: 16px;
           font-weight: 700;
+          color:rgb(255,255,255);
         }
         .desc{
           display: inline-block;

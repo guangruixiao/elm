@@ -1,12 +1,16 @@
 <template>
     <div class="select">
-      <span class="icon-remove_circle_outline" v-if="num>0" v-on:click="deleteNum"></span>
-      <span class="select-num" v-if="num>0">{{num}}</span>
+      <span class="icon-remove_circle_outline" v-if="food.count>0" v-on:click="deleteNum"></span>
+      <span class="select-num" v-if="food.count>0">{{food.count}}</span>
       <span class="icon-add_circle" v-on:click="addNum"></span>
     </div>
 </template>
 <script>
+
+import Vue from 'vue';
+
 export default {
+  props:["food"],
   data() {
     return {
       num: 0,
@@ -15,10 +19,17 @@ export default {
 
   methods:{
     addNum:function(){
-      this.num=this.num+1
+      if (!this.food.count) {
+        console.log("yes")
+        Vue.set(this.food, 'count', 1);
+      } else {
+        this.food.count++;
+      }
     },
     deleteNum:function(){
-      this.num=this.num-1
+      if (this.food.count) {
+          this.food.count--;
+        }
     },
 
   }

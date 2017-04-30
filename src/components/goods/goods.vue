@@ -29,12 +29,12 @@
                   </span>
                 </div>
               </div>
-              <selectcart class="selectVue" ></selectcart>
+              <selectcart class="selectVue" v-bind:food="food" ></selectcart>
             </div>
           </li>
         </ul>
       </div>
-      <shoppingcar class="carfooter" v-bind:deliveryPrice="sellerMessage.deliveryPrice" v-bind:minPrice="sellerMessage.minPrice"></shoppingcar>
+      <shoppingcar class="carfooter"  v-bind:selectFoods="selectFoods" v-bind:deliveryPrice="sellerMessage.deliveryPrice" v-bind:minPrice="sellerMessage.minPrice"></shoppingcar>
     </div>
 </template>
 <script>
@@ -64,7 +64,18 @@ export default {
             }
           }
           return 0;
-        }
+        },
+        selectFoods() {
+                let foods = [];
+                this.goodsinfo.forEach((good) => {
+                  good.foods.forEach((food) => {
+                    if (food.count) {
+                      foods.push(food);
+                    }
+                  });
+                });
+                return foods;
+              }
   },
   methods:{
       fetchdata:function(){
