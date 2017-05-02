@@ -20,7 +20,6 @@ export default {
   methods:{
     addNum:function(){
       if (!this.food.count) {
-        console.log("yes")
         Vue.set(this.food, 'count', 1);
       } else {
         this.food.count++;
@@ -29,7 +28,7 @@ export default {
     deleteNum:function(){
       if (this.food.count) {
           this.food.count--;
-        }
+      }
     },
 
   }

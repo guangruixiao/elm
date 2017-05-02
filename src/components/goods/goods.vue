@@ -34,7 +34,11 @@
           </li>
         </ul>
       </div>
-      <shoppingcar class="carfooter"  v-bind:selectFoods="selectFoods" v-bind:deliveryPrice="sellerMessage.deliveryPrice" v-bind:minPrice="sellerMessage.minPrice"></shoppingcar>
+      <shoppingcar class="carfooter" v-on:cartClick="cartShow"  v-bind:selectFoods="selectFoods" v-bind:deliveryPrice="sellerMessage.deliveryPrice" v-bind:minPrice="sellerMessage.minPrice" v-bind:cartShow="cartShow"></shoppingcar>
+      <transition  name="slide">
+        <div class="cartDetail" v-if="cartState" >
+        </div>
+      </transition>
     </div>
 </template>
 <script>
@@ -48,7 +52,7 @@ import selectcart from '../select'
 export default {
   props:["sellerMessage"],
   data:function(){
-        return {goodsinfo:[], listHeight: [], scrollY: 0,}
+        return {goodsinfo:[], listHeight: [], scrollY: 0,cartState:false}
     },
   created(){
       this.fetchdata();
@@ -125,6 +129,14 @@ export default {
               let foodList = this.$refs.foodList;
               let el = foodList[index];
               this.foodsScroll.scrollToElement(el, 300);
+      },
+
+      cartShow:function(){
+        if(this.cartState==false){
+            this.cartState=true
+        }else{
+          this.cartState=false
+        }
       },
 
 
@@ -249,9 +261,29 @@ export default {
           }
 
         }
-
       }
     }
+    .cartDetail{
+        &.slide-enter-active {
+          transition: all .3s ease;
+        }
+        &.slide-leave-active {
+          transition: all .8s ease;
+        }
+        &.slide-enter, &.slide-leave-active {
+          transform: translateX(10px);
+          opacity: 0;
+        }
+        position:fixed;
+        z-index:3;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        background-color:rgba(7,17,27,0.8);
+      }
+
 
   }
 </style>

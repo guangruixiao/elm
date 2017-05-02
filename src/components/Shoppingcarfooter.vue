@@ -1,7 +1,7 @@
 <template>
     <div class="carfooter">
       <div class="content">
-        <div class="left">
+        <div class="left" v-on:click="cartClick">
           <span class="logo-wrapper">
             <i class="icon-shopping_cart" ></i>
           </span>
@@ -9,7 +9,7 @@
           <span class="totalPrice">￥{{totalPrice}}</span>
           <span class="desc">另需配送费{{deliveryPrice}}￥</span>
         </div>
-        <div class="right">
+        <div class="right"  v-bind:class="{ check: isActive }">
           <span class="minPrice">{{check}}</span>
         </div>
       </div>
@@ -25,9 +25,11 @@ export default {
       minPrice: {
       },
       selectFoods:{},
+      cartShow:{}
   },
   data() {
     return {
+      isActive:false,
 
     };
   },
@@ -50,15 +52,31 @@ export default {
           },
     check() {
           if(this.totalPrice >= this.minPrice){
+            this.isActive=true;
             return "去结算"
           }else if(this.totalPrice>0){
+            this.isActive=false;
             let gapPrice=this.minPrice-this.totalPrice;
             return "还差￥"+gapPrice+"起送"
           }else{
+            this.isActive=false;
             return "￥"+this.minPrice+"起送"
           }
+    },
+
+  },
+
+  methods:{
+    cartClick:function() {
+      if(this.totalPrice >= this.minPrice){
+         this.$emit('cartClick')
+      }
+
     }
   }
+
+
+
 
 }
 </script>
@@ -67,7 +85,7 @@ export default {
     position:fixed;
     bottom:0;
     left:0;
-    z-index:10;
+    z-index:5;
     width:100%;
     height:50px;
     color: rgba(255, 255, 255, 0.4);
@@ -134,11 +152,16 @@ export default {
         width:105px;
         background: #2b333b;
         text-align: center;
+        &.check{
+            background: green;
+            color:rgb(255,255,255);
+          }
         .minPrice{
           height: 48px;
           line-height: 48px;
           font-size: 12px;
           font-weight: 700;
+
 
         }
 

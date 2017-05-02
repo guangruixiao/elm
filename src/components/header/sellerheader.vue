@@ -27,7 +27,7 @@
         <img v-bind:src=sellerMessage.avatar width="100%" height="100%">
       </div>
       <transition name="fade">
-        <div class="detail" v-show="sellerdetail" >
+        <div class="detail" v-if="sellerdetail" >
           <div class="detail-wrapper clearfix">
             <div class="detail-main">
               <div class="detail-header">
