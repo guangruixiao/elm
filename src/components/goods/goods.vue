@@ -37,6 +37,20 @@
       <shoppingcar class="carfooter" v-on:cartClick="cartShow"  v-bind:selectFoods="selectFoods" v-bind:deliveryPrice="sellerMessage.deliveryPrice" v-bind:minPrice="sellerMessage.minPrice" v-bind:cartShow="cartShow"></shoppingcar>
       <transition  name="slide">
         <div class="cartDetail" v-if="cartState" >
+          <div class="detail-wrapper">
+            <div class="detail-p">
+              <h1 class="detail-title">购物车</h1>
+              <ul class=detail-list>
+                <li class="detail-goods" v-for="item in selectFoods">
+                  <div class="detail-good">
+                    <span class="good-name">{{item.name}}</span>
+                    <span class="good-price">{{item.price*item.count}}</span>
+                    <selectcart v-bind:food="item" class="detail-select" ></selectcart>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </transition>
     </div>
@@ -280,8 +294,21 @@ export default {
         top:0;
         width:100%;
         height:100%;
-        overflow:auto;
         background-color:rgba(7,17,27,0.8);
+        .detail-wrapper{
+          border:2px solid red;
+          .detail-goods{
+              background-color:white;
+              position:relative;
+              .detail-select{
+                bottom:0;
+
+              }
+            }
+
+
+        }
+
       }
 
 

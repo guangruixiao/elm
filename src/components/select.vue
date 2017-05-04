@@ -41,18 +41,17 @@ export default {
     position:absolute;
     right:0;
     bottom:18px;
-    font-size:0;
     .icon-remove_circle_outline,.icon-add_circle{
-      dispaly:inline-block;
-
+      display:inline-block;
+      vertical-align:middle;
       font-size:24px;
       color:rgb(0,160,220);
       line-height:24px;
     }
     .select-num{
-      dispaly:inline-block;
-      vertail-align:middle;
-      font-size:10px;
+      display:inline-block;
+      text-align:center;
+      font-size:13px;
       width:24px;
       color:rgb(147,153,159);
     }
