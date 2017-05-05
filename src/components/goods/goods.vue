@@ -35,11 +35,13 @@
         </ul>
       </div>
       <shoppingcar class="carfooter" v-on:cartClick="cartShow"  v-bind:selectFoods="selectFoods" v-bind:deliveryPrice="sellerMessage.deliveryPrice" v-bind:minPrice="sellerMessage.minPrice" v-bind:cartShow="cartShow"></shoppingcar>
-      <transition  name="slide">
+      <transition  name="fold">
         <div class="cartDetail" v-if="cartState" >
           <div class="detail-wrapper">
-            <div class="detail-p">
-              <h1 class="detail-title">购物车</h1>
+              <div class="detail-title">
+                <span class="name">购物车</span>
+                <span v-on:click="deleteCart" class="clear">清空</span>
+              </div>
               <ul class=detail-list>
                 <li class="detail-goods" v-for="item in selectFoods">
                   <div class="detail-good">
@@ -49,7 +51,6 @@
                   </div>
                 </li>
               </ul>
-            </div>
           </div>
         </div>
       </transition>
@@ -60,7 +61,7 @@ import icon from '../icon/icon';
 import BScroll from 'better-scroll'
 import shoppingcar from '../shoppingcarfooter'
 import selectcart from '../select'
-
+import Vue from 'vue';
 
 
 export default {
@@ -152,6 +153,21 @@ export default {
           this.cartState=false
         }
       },
+
+      deleteCart:function(){
+        this.goodsinfo.forEach((good) => {
+          good.foods.forEach((food) => {
+            if (food.count) {
+              Vue.delete(food, 'count');
+            }
+          });
+        });
+
+        this.cartState=false;
+
+
+
+      }
 
 
   },
@@ -278,16 +294,6 @@ export default {
       }
     }
     .cartDetail{
-        &.slide-enter-active {
-          transition: all .3s ease;
-        }
-        &.slide-leave-active {
-          transition: all .8s ease;
-        }
-        &.slide-enter, &.slide-leave-active {
-          transform: translateX(10px);
-          opacity: 0;
-        }
         position:fixed;
         z-index:3;
         left:0;
@@ -295,18 +301,36 @@ export default {
         width:100%;
         height:100%;
         background-color:rgba(7,17,27,0.8);
+        transform: translate3d(0, 0, 0);
+        &.fold-enter-active, &.fold-leave-active{
+          transition: all 1.2s
+        }
+        &.fold-enter, &.fold-leave-active{
+          transform: translate3d(0, 100%, 0)
+        }
         .detail-wrapper{
+          position: absolute;
+          left: 0;
+          bottom: 54px;
+          width:100%;
+
           border:2px solid red;
-          .detail-goods{
+          .detail-title{
+            background-color:#f3f5f7;
+            height:40px;
+          }
+          .detail-list{
+            max-height:265px;
+            overflow:auto;
+            .detail-goods{
               background-color:white;
+              height:48px;
               position:relative;
               .detail-select{
                 bottom:0;
-
               }
             }
-
-
+          }
         }
 
       }
