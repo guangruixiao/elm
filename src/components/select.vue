@@ -6,7 +6,7 @@
        </span>
      </transition>
      <span class="select-num" v-if="food.count>0">{{food.count}}</span>
-     <span class="icon-add_circle" v-on:click="addNum"></span>
+     <span class="icon-add_circle" v-on:click="addNum()"></span>
     </div>
 </template>
 <script>
@@ -22,12 +22,14 @@ export default {
   },
 
   methods:{
-    addNum:function(){
+    addNum:function(target){
       if (!this.food.count) {
         Vue.set(this.food, 'count', 1);
       } else {
         this.food.count++;
-      }
+      };
+
+      this.$root.$emit('add', event.target)
     },
     deleteNum:function(){
       if (this.food.count) {
@@ -81,7 +83,7 @@ export default {
       display:inline-block;
       text-align:center;
       font-size:13px;
-      width:24px;
+      width:20px;
       color:rgb(147,153,159);
     }
   }
