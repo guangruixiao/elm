@@ -314,20 +314,47 @@ export default {
           bottom: 54px;
           width:100%;
 
-          border:2px solid red;
           .detail-title{
-            background-color:#f3f5f7;
             height:40px;
+            line-height: 24px;
+            font-size: 18px;
+            color: rgb(7, 17, 27);
+            background-color:#f3f5f7;
+            .name{
+              display:inline-block;
+              margin-top:10px;
+              margin-left:12px;
+            }
+            .clear{
+              display:inline-block;
+              margin-top:10px;
+              margin-left:228px;
+            }
+
           }
           .detail-list{
             max-height:265px;
             overflow:auto;
             .detail-goods{
+              padding: 12px 0;
               background-color:white;
               height:48px;
               position:relative;
+              .good-name{
+                display:inline-block;
+                margin-left:12px;
+              }
+              .good-price{
+                display:inline-block;
+                position:absolute;
+                left:160px;
+                color:red;
+              }
               .detail-select{
                 bottom:0;
+                padding-right: 18px;
+                font-size:18px;
+                font-weight:700;
               }
             }
           }
