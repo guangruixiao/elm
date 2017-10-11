@@ -1,27 +1,23 @@
-# elm
+饿了么点餐系统
 
-> A Vue.js project
+技术要点：
+vue2.0、vuex、vue-router、axios、webpack、eslint、better-scroll
 
-## Build Setup
+效果截图：
 
-``` bash
-# install dependencies
-npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
 
-# build for production with minification
-npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
-```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+功能与组件：
+ 购物车
+ 购买物品小球飞入动画
+ 评价star组件
+ 商品添加、删除组件
+ 优惠图标组件
+ 目录、列表联动滚动
+ 评论的是否满意和内容筛选
+ 商品列表页面
+ 店铺评价页面
+ 商家介绍页面
+ 优惠活动页面
+ 商品详情页面
