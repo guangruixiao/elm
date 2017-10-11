@@ -4,10 +4,11 @@
 **效果截图：**
 
 <div >
-<img src="1.png" width =20%  height = 20%  alt="图片名称" />
+<img src="1.jpg" width =20%  height = 20%  alt="图片名称" />
 <span  >&nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; </span>
 <img src="2.png" width =20%  height = 20%  padding="200px" alt="图片名称"  />
 </div>
+
 
 **技术要点：**
 
