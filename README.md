@@ -5,7 +5,6 @@ vue2.0、vuex、vue-router、axios、webpack、eslint、better-scroll
 
 效果截图：
 
-https://cloud.githubusercontent.com/assets/20501873/24188896/ff2c5910-0f1d-11e7-80c0-bc28fd84fe80.png
 
 
 功能与组件：
