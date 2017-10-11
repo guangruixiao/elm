@@ -1,13 +1,20 @@
 饿了么点餐系统
 
-技术要点：
+
+**效果截图：**
+
+<div >
+<img src="1.png" width =20%  height = 20%  alt="图片名称" />
+<span  >&nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; </span>
+<img src="2.png" width =20%  height = 20%  padding="200px" alt="图片名称"  />
+</div>
+
+**技术要点：**
+
 vue2.0、vuex、vue-router、axios、webpack、eslint、better-scroll
 
-效果截图：
+**功能与组件：**
 
-
-
-功能与组件：
  购物车
  购买物品小球飞入动画
  评价star组件
